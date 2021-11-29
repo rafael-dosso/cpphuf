@@ -1,0 +1,67 @@
+# depslib dependency file v1.0
+1638226565 source:c:\users\rafae\desktop\compactador-huffman-cpp\src\nodo.cpp
+	<iostream>
+	<stdlib.h>
+	<string>
+	<sstream>
+	"Nodo.h"
+
+1638226455 c:\users\rafae\desktop\compactador-huffman-cpp\include\nodo.h
+	<iostream>
+
+1638228532 source:c:\users\rafae\desktop\compactador-huffman-cpp\main.cpp
+	<iostream>
+	"Nodo.h"
+	"Item.h"
+	"Fila.h"
+	"Compactador.h"
+	"Descompactador.h"
+
+1638226706 c:\users\rafae\desktop\compactador-huffman-cpp\include\item.h
+	"Nodo.h"
+	<iostream>
+
+1638226921 c:\users\rafae\desktop\compactador-huffman-cpp\include\fila.h
+	"Item.h"
+	<iostream>
+
+1638228004 source:c:\users\rafae\desktop\compactador-huffman-cpp\src\fila.cpp
+	<iostream>
+	<stdlib.h>
+	<string>
+	<sstream>
+	"Fila.h"
+
+1638227122 source:c:\users\rafae\desktop\compactador-huffman-cpp\src\item.cpp
+	<iostream>
+	<stdlib.h>
+	<string>
+	<sstream>
+	"Item.h"
+
+1638228305 source:c:\users\rafae\desktop\compactador-huffman-cpp\src\compactador.cpp
+	<iostream>
+	<string.h>
+	"Compactador.h"
+
+1638228553 c:\users\rafae\desktop\compactador-huffman-cpp\include\compactador.h
+	"Nodo.h"
+	"Fila.h"
+	"Item.h"
+	<iostream>
+
+1638228565 c:\users\rafae\desktop\compactador-huffman-cpp\include\descompactador.h
+	"Nodo.h"
+	"Fila.h"
+	"Item.h"
+	<iostream>
+
+1638229129 source:c:\users\rafae\desktop\compactador-huffman-cpp\src\descompactador.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<locale.h>
+	<time.h>
+	<iostream>
+	"Descompactador.h"
+
