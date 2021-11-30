@@ -13,8 +13,9 @@ Fila::Fila(): inicio(NULL)
 Fila::Fila(unsigned int* frequencias) {
 
     this->inicio = NULL;
-    for (unsigned char i = 0; i < 256; i++)
+    for (int i = 0; i < 256; i++)
     {
+
         if (frequencias[i] != 0)
         {
             Nodo *novo = new Nodo(i, frequencias[i]);
@@ -38,7 +39,7 @@ Item* Fila::inserir(Item* item, Nodo *node){
     if (node->getFrq() < (item->getNo()->getFrq()))
     {
         // Seta o primeiro da lista como o novo nodo
-        item = new Item(node, this->inicio);
+        item = new Item(node, item);
 
         return item;
     }

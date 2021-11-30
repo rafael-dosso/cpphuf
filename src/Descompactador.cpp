@@ -13,11 +13,10 @@ Descompactador::Descompactador():
 fila(NULL), raiz(NULL),
 tabelaDeCaminhos(NULL), frequencias(new unsigned int[256])
 {
-
+    memset(frequencias, 0, 256 * sizeof(int));
 };
 
 void Descompactador::montarArvore(){
-
     while (this->fila->tamanho() >= 2)
     {
         Nodo *esquerda = this->fila->desenfileirar();
@@ -139,17 +138,12 @@ void Descompactador::Descompactar() {
         return;
     }
 
-    cout << "teste1";
     fread(&bitsAIgnorar, sizeof(unsigned char), 1, arqCompactado);
     fread(this->frequencias, sizeof(unsigned int), 256, arqCompactado);
-    for (int i=0; i < 256; i++) {
-        cout << "Byte " << i << ": "<< frequencias[i] << "\n";
-    }
     this->fila = new Fila(this->frequencias);
     this->montarArvore();
     this->alocaTabela();
     this->gerarNovoArq(arqCompactado, arqDescompactado);
-    cout << "teste2";
 
     fclose(arqCompactado);
     fclose(arqDescompactado);

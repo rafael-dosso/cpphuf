@@ -9,11 +9,12 @@
 1638226455 c:\users\rafae\desktop\compactador-huffman-cpp\include\nodo.h
 	<iostream>
 
-1638228532 source:c:\users\rafae\desktop\compactador-huffman-cpp\main.cpp
+1638235888 source:c:\users\rafae\desktop\compactador-huffman-cpp\main.cpp
 	<iostream>
-	"Nodo.h"
-	"Item.h"
-	"Fila.h"
+	<stdlib.h>
+	<string>
+	<sstream>
+	<conio.h>
 	"Compactador.h"
 	"Descompactador.h"
 
@@ -21,11 +22,11 @@
 	"Nodo.h"
 	<iostream>
 
-1638226921 c:\users\rafae\desktop\compactador-huffman-cpp\include\fila.h
+1638234148 c:\users\rafae\desktop\compactador-huffman-cpp\include\fila.h
 	"Item.h"
 	<iostream>
 
-1638228004 source:c:\users\rafae\desktop\compactador-huffman-cpp\src\fila.cpp
+1638235291 source:c:\users\rafae\desktop\compactador-huffman-cpp\src\fila.cpp
 	<iostream>
 	<stdlib.h>
 	<string>
@@ -56,7 +57,7 @@
 	"Item.h"
 	<iostream>
 
-1638229129 source:c:\users\rafae\desktop\compactador-huffman-cpp\src\descompactador.cpp
+1638234887 source:c:\users\rafae\desktop\compactador-huffman-cpp\src\descompactador.cpp
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

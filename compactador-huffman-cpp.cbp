@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -32,7 +34,17 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Compactador.h" />
+		<Unit filename="include/Descompactador.h" />
+		<Unit filename="include/Fila.h" />
+		<Unit filename="include/Item.h" />
+		<Unit filename="include/Nodo.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Compactador.cpp" />
+		<Unit filename="src/Descompactador.cpp" />
+		<Unit filename="src/Fila.cpp" />
+		<Unit filename="src/Item.cpp" />
+		<Unit filename="src/Nodo.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
