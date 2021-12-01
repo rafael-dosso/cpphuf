@@ -66,3 +66,70 @@
 	<iostream>
 	"Descompactador.h"
 
+1638386268 source:c:\users\rafae\documents\projetos\cpphuf\src\item.cpp
+	<iostream>
+	<stdlib.h>
+	<string>
+	<sstream>
+	"Item.h"
+
+1638291143 c:\users\rafae\documents\projetos\cpphuf\include\item.h
+	"Nodo.h"
+	<iostream>
+
+1638384995 c:\users\rafae\documents\projetos\cpphuf\include\nodo.h
+	<iostream>
+
+1638383116 source:c:\users\rafae\documents\projetos\cpphuf\main.cpp
+	<iostream>
+	<stdlib.h>
+	<string>
+	<sstream>
+	<conio.h>
+	"Compactador.h"
+	"Descompactador.h"
+
+1638291143 c:\users\rafae\documents\projetos\cpphuf\include\compactador.h
+	"Nodo.h"
+	"Fila.h"
+	"Item.h"
+	<iostream>
+
+1638383618 c:\users\rafae\documents\projetos\cpphuf\include\fila.h
+	"Item.h"
+	<iostream>
+
+1638380337 c:\users\rafae\documents\projetos\cpphuf\include\descompactador.h
+	"Nodo.h"
+	"Fila.h"
+	"Item.h"
+	<iostream>
+
+1638386259 source:c:\users\rafae\documents\projetos\cpphuf\src\compactador.cpp
+	<iostream>
+	<string.h>
+	"Compactador.h"
+
+1638386459 source:c:\users\rafae\documents\projetos\cpphuf\src\descompactador.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<locale.h>
+	<time.h>
+	<iostream>
+	"Descompactador.h"
+
+1638386255 source:c:\users\rafae\documents\projetos\cpphuf\src\fila.cpp
+	<iostream>
+	<stdlib.h>
+	<string>
+	<sstream>
+	"Fila.h"
+
+1638386251 source:c:\users\rafae\documents\projetos\cpphuf\src\nodo.cpp
+	<iostream>
+	<stdlib.h>
+	<string>
+	<sstream>
+	"Nodo.h"
+

@@ -16,29 +16,32 @@ int main()
     {
         system("cls");
         cout << "Algoritmo de Huffman - Compactacao de arquivos\n"
-             << "\n------------------------------\n"
-             << "1 - Compactador de arquivos\n"
-             << "2 - Descompactador de arquivos \n"
-             << "3 - Sair \n"
-             << "------------------------------\n"
-             << "Escolha uma opcao: ";
+            << "\n------------------------------\n"
+            << "1 - Compactador de arquivos\n"
+            << "2 - Descompactador de arquivos \n"
+            << "3 - Sair \n"
+            << "------------------------------\n"
+            << "Escolha uma opcao: ";
 
         cin >> opcao;
 
         cout << "\n";
 
-        Compactador     *compactador    = new Compactador();
-        Descompactador  *descompactador = new Descompactador();
 
         switch (opcao)
         {
-            case 1:
+            case 1: {
+                Compactador* compactador = new Compactador();
                 (*compactador).Compactar();
+                delete compactador;
                 break;
-
-            case 2:
+            }
+            case 2: {
+                Descompactador* descompactador = new Descompactador();
                 (*descompactador).Descompactar();
+                delete descompactador;
                 break;
+            }
         }
 
         if (opcao != 3)
@@ -52,5 +55,6 @@ int main()
     } while (opcao != 3);
 
     cout << "Programa finalizado com exito.\n";
+
     return 0;
 }

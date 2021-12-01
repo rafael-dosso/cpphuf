@@ -11,7 +11,9 @@ Item::Item(Nodo* nodo, Item* item): no(nodo), prox(item)
 {}
 
 Item::~Item()
-{}
+{
+    delete this->no;
+}
 
 string Item::toString(Item item) {
     if (item.getNo() == NULL) {

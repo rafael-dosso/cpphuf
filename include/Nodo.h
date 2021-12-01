@@ -15,6 +15,8 @@ class Nodo
         int alturaRecursivo(Nodo*);
         static string toString(Nodo, int);
 
+        void destroy(Nodo*);
+
     public:
         Nodo();
         Nodo(unsigned char, int);

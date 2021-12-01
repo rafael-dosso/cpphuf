@@ -13,6 +13,10 @@ left(NULL), right(NULL), byte(0), frq(0)
 
 Nodo::~Nodo()
 {
+    if (this->getLeft() != NULL)
+        delete this->getLeft();
+    if (this->getRight() != NULL)
+        delete this->getRight();
 }
 
 Nodo::Nodo(unsigned char byte, int frq): left(NULL), right(NULL) {

@@ -16,6 +16,19 @@ tabelaDeCaminhos(NULL), frequencias(new unsigned int[256])
     memset(frequencias, 0, 256 * sizeof(int));
 };
 
+Descompactador::~Descompactador()
+{
+    delete[] this->frequencias;
+
+    for (int pos = 0; pos < 256; pos++)
+        delete[] this->tabelaDeCaminhos[pos];
+    delete[] this->tabelaDeCaminhos;
+
+    delete this->raiz;
+
+    delete this->fila;
+};
+
 void Descompactador::montarArvore(){
     while (this->fila->tamanho() >= 2)
     {
@@ -35,12 +48,12 @@ void Descompactador::alocaTabela(){
 
     // Inicializa a tabela
     const int colunas = this->raiz->altura();
-    this->tabelaDeCaminhos = (char**) malloc(sizeof(char*) * 256);
+    this->tabelaDeCaminhos = new char* [256];
 
     for (int pos = 0; pos < 256; pos++)
     {
-        this->tabelaDeCaminhos[pos] = (char*) malloc(colunas * sizeof(char));
-        memset(this->tabelaDeCaminhos[pos], 0 , sizeof(this->tabelaDeCaminhos[pos]));
+        this->tabelaDeCaminhos[pos] = new char [colunas];
+        memset(this->tabelaDeCaminhos[pos], 0 , sizeof(char) * colunas);
     }
 };
 
@@ -52,14 +65,13 @@ unsigned char Descompactador::getBit(unsigned char byte, int pos){
 
 void Descompactador::gerarNovoArq(FILE* arqEntrada, FILE* arqSaida)
 {
-
     Nodo *aux = this->raiz;
 
     unsigned char byte;
     unsigned char proxByte;
     fread(&byte, sizeof(byte), 1, arqEntrada);
 
-    // Le até o ultimo byte do arquivo compactado e escreve
+    // Le ate o ultimo byte do arquivo compactado e escreve
     // seus bytes correspondentes no arquivo final
     while (fread(&proxByte, sizeof(proxByte), 1, arqEntrada))
     {
@@ -109,12 +121,10 @@ void Descompactador::Descompactar() {
     char nome[200];
     char endereco[200];
 
-    // Seta a lingua como portugues
-    setlocale(LC_ALL, "Portuguese");
-    cout << "\n\tCompactador de arquivos\n";
+    cout << "\n\tDescompactador de arquivos\n";
 
     // Le o endereco e o nome do arquivo fonte
-    cout << "\nDigite o endereco do arquivo a ser compactado: ";
+    cout << "\nDigite o endereco do arquivo a ser descompactado: ";
     cin >> endereco;
 
     cout << "\nDigite o nome do arquivo que contera a descompactacao: ";
@@ -129,7 +139,7 @@ void Descompactador::Descompactar() {
     FILE* arqCompactado     = fopen(endereco, "rb");
     FILE *arqDescompactado  = fopen(endr_arq_comp, "wb");
 
-    // Verifica se o arquivo é válido
+    // Verifica se o arquivo ï¿½ vï¿½lido
     if (arqCompactado == NULL)
     {
         cout << "Arquivo nao encontrado!\n";
@@ -151,7 +161,7 @@ void Descompactador::Descompactar() {
     clock_t end = clock();
     float seconds = (float)(end - start) / CLOCKS_PER_SEC;
 
-    cout << "\nArquivo compactado com sucesso no diretorio: \n";
+    cout << "\nArquivo descompactado com sucesso no diretorio: \n";
     cout << endr_arq_comp;
-    cout << "\n\nTempo de compactacao: " << seconds << "\n";
+    cout << "\n\nTempo de descompactacao: " << seconds << "\n";
 };

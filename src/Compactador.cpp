@@ -12,11 +12,77 @@ tabelaDeCaminhos(NULL), frequencias(new unsigned int[256])
 
 };
 
+Compactador::~Compactador()
+{
+    delete[] this->frequencias;
+
+    for (int pos = 0; pos < 256; pos++)
+        delete[] this->tabelaDeCaminhos[pos];
+    delete[] this->tabelaDeCaminhos;
+
+    delete this->fila;
+
+    delete this->raiz;
+};
+
+void Compactador::Compactar() {
+
+    char nome[200];
+    char endereco[200];
+
+    // Seta a lingua como portugues
+    setlocale(LC_ALL, "Portuguese");
+    cout << "\n\tCompactador de arquivos\n";
+
+    // Le o endereco e o nome do arquivo fonte
+    cout << "\nDigite o endereco do arquivo a ser compactado: ";
+    cin >> endereco;
+
+    cout << "\nDigite o nome do arquivo que contera a compactacao: ";
+    cin >> nome;
+
+    char endr_arq_comp[200] = "c:/temp/";
+    strcat(endr_arq_comp, nome);
+    strcat(endr_arq_comp, ".huf");
+
+    clock_t start = clock();
+
+    // Inicializa os arquivos
+    FILE* arqOriginal = fopen(endereco, "rb");
+    FILE *arqCompactado = fopen(endr_arq_comp, "wb");
+
+    // Verifica se o arquivo ï¿½ vï¿½lido
+    if (arqOriginal == NULL)
+    {
+        cout << "Arquivo nao encontrado!\n";
+        fclose(arqOriginal);
+        fclose(arqCompactado);
+        return;
+    }
+
+
+    this->encontrarFrequencias(arqOriginal);
+    this->fila = new Fila(this->frequencias);
+    this->montarArvore();
+    this->alocaTabela();
+    this->gerarNovoArq(arqOriginal, arqCompactado);
+
+    fclose(arqOriginal);
+    fclose(arqCompactado);
+
+    clock_t end = clock();
+    float seconds = (float)(end - start) / CLOCKS_PER_SEC;
+
+    cout << "\nArquivo compactado com sucesso no diretorio: \n";
+    cout << endr_arq_comp;
+    cout << "\n\nTempo de compactacao: " << seconds << "\n";
+};
+
 void Compactador::encontrarFrequencias(FILE* arquivo)
 {
     memset(frequencias, 0, 256 * sizeof(unsigned int));
 
-    // Verifica se o arquivo é valido
+    // Verifica se o arquivo ï¿½ valido
     if (arquivo == NULL) {
         cout << "Arquivo invalido!\n";
         return;
@@ -48,20 +114,19 @@ void Compactador::alocaTabela(){
 
     // Inicializa a tabela
     const int colunas = this->raiz->altura();
-    this->tabelaDeCaminhos = (char**) malloc(sizeof(char*) * 256);
+    this->tabelaDeCaminhos = new char* [256];
 
     for (int pos = 0; pos < 256; pos++)
     {
-        this->tabelaDeCaminhos[pos] = (char*) malloc(colunas * sizeof(char));
+        this->tabelaDeCaminhos[pos] = new char [colunas];
         memset(this->tabelaDeCaminhos[pos], 0 , sizeof(this->tabelaDeCaminhos[pos]));
     }
 };
 
 int Compactador::geraCodigo(Nodo *noArvore, unsigned char byteProc, char *resultado, int tamanho)
 {
-
-    // Caso base da recursão:
-    // Se o nó for folha e o seu valor for o buscado, colocar o caractere terminal no buffer e encerrar
+    // Caso base da recursï¿½o:
+    // Se o nï¿½ for folha e o seu valor for o buscado, colocar o caractere terminal no buffer e encerrar
 
     if (noArvore->getLeft() == NULL && noArvore->getRight() == NULL && noArvore->getByte() == byteProc)
     {
@@ -131,14 +196,14 @@ void Compactador::gerarNovoArq(FILE* arqEntrada, FILE* arqSaida)
             if (i == '1')
                 buffer = buffer | (0b00000001 << 8 - tam);
             // if (i == '0')
-            //     nao precisa ser feito nada, ja que buffer é
+            //     nao precisa ser feito nada, ja que buffer ï¿½
             //     inicializado com apenas 0s
 
             // Quando formar um byte completo com 8 bits
             if (tam == 8)
             {
                 fwrite(&buffer, sizeof(unsigned char), 1, arqSaida);
-                // Zera a variável buffer e o contador de bits
+                // Zera a variï¿½vel buffer e o contador de bits
                 buffer = 0;
                 tam = 0;
             }
@@ -152,59 +217,4 @@ void Compactador::gerarNovoArq(FILE* arqEntrada, FILE* arqSaida)
     bitsAIgnorar = 8 - (--tam);
     fseek(arqSaida, 0, SEEK_SET);
     fwrite(&bitsAIgnorar, sizeof(unsigned char), 1, arqSaida);
-
-
-};
-
-void Compactador::Compactar() {
-
-    char nome[200];
-    char endereco[200];
-
-    // Seta a lingua como portugues
-    setlocale(LC_ALL, "Portuguese");
-    cout << "\n\tCompactador de arquivos\n";
-
-    // Le o endereco e o nome do arquivo fonte
-    cout << "\nDigite o endereco do arquivo a ser compactado: ";
-    cin >> endereco;
-
-    cout << "\nDigite o nome do arquivo que contera a compactacao: ";
-    cin >> nome;
-
-    char endr_arq_comp[200] = "c:/temp/";
-    strcat(endr_arq_comp, nome);
-    strcat(endr_arq_comp, ".huf");
-
-    clock_t start = clock();
-
-    // Inicializa os arquivos
-    FILE* arqOriginal = fopen(endereco, "rb");
-    FILE *arqCompactado = fopen(endr_arq_comp, "wb");
-
-    // Verifica se o arquivo é válido
-    if (arqOriginal == NULL)
-    {
-        cout << "Arquivo nao encontrado!\n";
-        fclose(arqOriginal);
-        fclose(arqCompactado);
-        return;
-    }
-
-
-    this->encontrarFrequencias(arqOriginal);
-    this->fila = new Fila(this->frequencias);
-    this->montarArvore();
-    this->alocaTabela();
-    this->gerarNovoArq(arqOriginal, arqCompactado);
-
-    fclose(arqOriginal);
-    fclose(arqCompactado);
-
-    clock_t end = clock();
-    float seconds = (float)(end - start) / CLOCKS_PER_SEC;
-
-    cout << "\nArquivo compactado com sucesso no diretorio: \n";
-    cout << endr_arq_comp;
-    cout << "\n\nTempo de compactacao: " << seconds << "\n";
 };

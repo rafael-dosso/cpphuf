@@ -10,6 +10,18 @@ Fila::Fila(): inicio(NULL)
 {
 }
 
+Fila::~Fila()
+{
+    Item* atual = this->inicio;
+    Item* aux;
+
+    while (atual != NULL) {
+        aux = atual->getProx();
+        delete atual;
+        atual = aux;
+    }
+}
+
 Fila::Fila(unsigned int* frequencias) {
 
     this->inicio = NULL;
@@ -44,7 +56,7 @@ Item* Fila::inserir(Item* item, Nodo *node){
         return item;
     }
 
-    else // A posição adequada para inserção é procurada na Fila de Prioridade
+    else // A posiï¿½ï¿½o adequada para inserï¿½ï¿½o ï¿½ procurada na Fila de Prioridade
     {
         item->setProx(inserir(item->getProx(), node));
 
@@ -63,9 +75,10 @@ Nodo* Fila::desenfileirar() {
         return NULL;
     }
 
-
+    Item* tmp = this->inicio;
     Nodo* result = this->inicio->getNo();
     this->inicio = this->inicio->getProx();
+    delete tmp;
 
     return result;
 }

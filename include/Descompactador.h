@@ -13,7 +13,7 @@ class Descompactador
     private:
         // Fila de prioridade
         Fila* fila;
-        // Nodo raiz da árvore de Huffman
+        // Nodo raiz da ï¿½rvore de Huffman
         Nodo* raiz;
         // Vetor com as frequencias de cada byte
         unsigned int *frequencias;
